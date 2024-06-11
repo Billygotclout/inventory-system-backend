@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send(userRepository.getCount().then((cc) => console.log(cc)));
+  res.send("API is running");
 });
 app.use("/api/auth", require("./routes/user.routes"));
 app.use("/api/file", require("./routes/file.routes"));
