@@ -11,6 +11,7 @@ const isUserActive = async (req, res, next) => {
         403
       );
     }
+    req.user = user;
     next();
   } catch (error) {
     next(error);
