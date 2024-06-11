@@ -98,7 +98,7 @@ exports.insertApprovedData = async ({ user_id, id }) => {
         new Date(row["Delivery Date"])
       ),
       color: row["Colour"],
-      quantity: row["Quantity"],
+      quantity: parseInt(row["Quantity"]),
       costPerUnit: parseFloat(row["Cost Per Unit"]),
       user_id: user_id,
       status: "approved",
@@ -140,7 +140,7 @@ exports.insertApprovedData = async ({ user_id, id }) => {
               new Date(data["Delivery Date"])
             ),
             color: data["Colour"],
-            quantity: data["Quantity"],
+            quantity: parseInt(data["Quantity"]),
             costPerUnit: parseFloat(data["Cost Per Unit"]),
             user_id: user_id,
             status: "approved",
