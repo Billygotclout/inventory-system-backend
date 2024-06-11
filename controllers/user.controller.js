@@ -1,6 +1,7 @@
 const userService = require("../services/user.service");
 const jwt = require("jsonwebtoken");
-const COOKIE_NAME = "remember_me";
+
+require("dotenv").config();
 const CustomError = require("../utils/CustomError");
 const sendMail = require("../utils/sendMail");
 const User = require("../models/User");

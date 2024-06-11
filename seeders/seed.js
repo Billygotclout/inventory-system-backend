@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+require("dotenv").config();
 const User = require("../models/User");
 const bcrpyt = require("bcryptjs");
 mongoose

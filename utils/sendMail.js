@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+require("dotenv").config();
 const sendMail = async ({ email, subject, text }) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
