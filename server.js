@@ -9,7 +9,7 @@ const port = process.env.PORT || 30001;
 dbConnect();
 app.use(express.json());
 app.use(cors());
-
+app.use(express.static("uploads"));
 app.get("/", (req, res) => {
   res.send("API is running");
 });

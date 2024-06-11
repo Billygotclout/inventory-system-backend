@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const File = require("../models/FileUpload");
 
 exports.addOneDayToDate = (date) => {
   date.setDate(date.getDate() + 1);
