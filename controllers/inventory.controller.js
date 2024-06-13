@@ -78,6 +78,7 @@ const createNewInventory = async (req, res, next) => {
       color: req.body.color,
       costPerUnit: req.body.costPerUnit,
       user_id: req.user.id,
+      quantity: req.body.quantity,
       status: "pending",
       category: req.body.category || null,
     });

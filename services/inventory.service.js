@@ -37,7 +37,9 @@ exports.createInventory = async (payload) => {
     );
   } else {
     const newInventory = await Inventory.create(payload);
-
+    if (!newInventory) {
+      throw new CustomError("Error creating inventory", 400);
+    }
     return newInventory;
   }
 };
