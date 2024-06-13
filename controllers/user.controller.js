@@ -45,27 +45,18 @@ const loginUser = async (req, res, next) => {
       user.rememberToken = rememberToken;
 
       await user.save();
-      await createActivityLog({
-        user_id: user._id,
-        ip_address: req.ip,
-        user_agent:
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
-        title: "Login",
-        activity: "User Successfully logged in",
-        module: "Authentication Module",
-      });
     } else {
       user.rememberToken = "";
-      await createActivityLog({
-        user_id: user._id,
-        ip_address: req.ip,
-        user_agent: req.get("User-Agent"),
-        title: "Login",
-        activity: "User Successfully logged in",
-        module: "Authentication Module",
-      });
     }
     await user.save();
+    await createActivityLog({
+      user_id: user._id,
+      ip_address: req.ip,
+      user_agent: req.get("User-Agent"),
+      title: "Login",
+      activity: "User Successfully logged in",
+      module: "Authentication Module",
+    });
 
     return res.json({
       message: "User logged in successfully",
