@@ -19,7 +19,7 @@ exports.uploadFile = async ({ filename, filepath, user_id }) => {
   const newFile = new FileUpload({
     filename: filename,
     filepath: filepath,
-    hash: "1234",
+    hash: hash,
     user_id: user_id,
   });
   await newFile.save();

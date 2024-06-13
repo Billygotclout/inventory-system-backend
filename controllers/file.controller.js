@@ -3,14 +3,14 @@ const CustomError = require("../utils/CustomError");
 const path = require("path");
 const uploadFileForApproval = async (req, res, next) => {
   try {
-    const fileUrl = `${req.protocol}://${req.get("host")}/${path.join(
-      __dirname,
-      "../uploads"
-    )}/${req.file.filename}`;
+    // const fileUrl = `${req.protocol}://${req.get("host")}/${path.join(
+    //   __dirname,
+    //   "../uploads"
+    // )}/${req.file.filename}`;
 
     const upload = await fileService.uploadFile({
       filename: req.file.filename,
-      filepath: fileUrl,
+      filepath: req.file.path,
       user_id: req.user.id,
     });
     if (!upload) {
