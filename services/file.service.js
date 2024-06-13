@@ -9,19 +9,20 @@ const csvParser = require("csv-parser");
 
 const Inventory = require("../models/Inventory");
 exports.uploadFile = async ({ filename, filepath, user_id }) => {
-  const fileP = path.join(__dirname, "../uploads", filename);
-  console.log(fileP);
-  const hash = await fileRepository.calculateFileHash(fileP);
-  const existingFile = await FileUpload.findOne({ hash: hash });
-  if (existingFile) {
-    fs.unlinkSync(fileP);
-    throw new CustomError("File already uploaded.", 400);
-  }
+  // const fileP = path.join(__dirname, "../uploads", filename);
+
+  // console.log(fileP);
+  // const hash = await fileRepository.calculateFileHash(fileP);
+  // const existingFile = await FileUpload.findOne({ hash: hash });
+  // if (existingFile) {
+  //   fs.unlinkSync(fileP);
+  //   throw new CustomError("File already uploaded.", 400);
+  // }
 
   const newFile = new FileUpload({
     filename: filename,
     filepath: filepath,
-    hash: hash,
+    hash: "1234",
     user_id: user_id,
   });
   await newFile.save();
