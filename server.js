@@ -27,7 +27,7 @@ if (app.get("env") === "development") {
     res.status(err.status || 500).send("Something went wrong!");
   });
 }
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.get("/", (req, res) => {
   res.send("API is running");
 });
