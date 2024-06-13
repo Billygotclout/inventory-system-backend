@@ -1,19 +1,17 @@
 const CustomError = require("../utils/CustomError");
 
 const errorHandler = (err, req, res, next) => {
-  console.error(err.stack); // Log the error stack trace
+  // Set default error values if not provided
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || "error";
 
-  // If the error is an instance of CustomError, use its status and message
-  if (err instanceof CustomError) {
-    res.status(err.statusCode()).send({
-      error: err.errorMessage(),
-    });
-  } else {
-    // Handle generic errors
-    res.status(err.status || 500).send({
-      error: "Something went wrong!",
-    });
-  }
+  // Send error response
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+    // Include the stack trace only in development mode
+    ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
+  });
 };
 
 module.exports = errorHandler;
