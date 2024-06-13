@@ -12,7 +12,7 @@ exports.uploadFile = async ({ filename, filepath, user_id }) => {
   const hash = await fileRepository.calculateFileHash(filepath);
   const existingFile = await FileUpload.findOne({ hash: hash });
   if (existingFile) {
-    fs.unlinkSync(fileP);
+    fs.unlinkSync(filepath);
     throw new CustomError("File already uploaded.", 400);
   }
 
