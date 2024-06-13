@@ -30,8 +30,8 @@ exports.viewFileContents = async (id) => {
   if (!file) {
     throw new CustomError("File not found", 404);
   }
-  const fileP = path.join(__dirname, "../uploads", file.filename);
-  const filepath = path.resolve(fileP);
+
+  const filepath = path.resolve(file.filepath);
   const ext = path.extname(file.filename);
   if (ext === ".xlsx" || ext === ".xls") {
     const workbook = XLSX.readFile(filepath, {
