@@ -10,6 +10,7 @@ const csvParser = require("csv-parser");
 const Inventory = require("../models/Inventory");
 exports.uploadFile = async ({ filename, filepath, user_id }) => {
   const fileP = path.join(__dirname, "../uploads", filename);
+  console.log(fileP);
   const hash = await fileRepository.calculateFileHash(fileP);
   const existingFile = await FileUpload.findOne({ hash: hash });
   if (existingFile) {
