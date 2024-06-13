@@ -20,7 +20,9 @@ const toggleInventoryType = async (req, res, next) => {
       data: updateInventoryTypeStatus,
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 const approveInventory = async (req, res, next) => {
@@ -33,7 +35,9 @@ const approveInventory = async (req, res, next) => {
       product: inventory,
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 const getAllInventoryItems = async (req, res, next) => {
@@ -45,7 +49,9 @@ const getAllInventoryItems = async (req, res, next) => {
       data: getAllInventory,
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 const getInventoryItem = async (req, res, next) => {
@@ -57,7 +63,9 @@ const getInventoryItem = async (req, res, next) => {
       data: getInventory,
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 const createNewInventory = async (req, res, next) => {
@@ -78,7 +86,9 @@ const createNewInventory = async (req, res, next) => {
       data: createNew,
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 module.exports = {

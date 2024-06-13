@@ -22,7 +22,9 @@ const uploadFileForApproval = async (req, res, next) => {
       file: upload._id,
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 const checkUploadedFile = async (req, res, next) => {
@@ -33,7 +35,9 @@ const checkUploadedFile = async (req, res, next) => {
       data: checkFile,
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 
@@ -49,7 +53,9 @@ const saveApprovedDataToDatabase = async (req, res, next) => {
       productsNumber: saveFileDataToDb,
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 const cancelDataRequest = async (req, res, next) => {
@@ -61,7 +67,9 @@ const cancelDataRequest = async (req, res, next) => {
       message: "Request cancelled, files deleted",
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 

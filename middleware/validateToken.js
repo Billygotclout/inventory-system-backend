@@ -21,7 +21,9 @@ const validateToken = async (req, res, next) => {
       throw new CustomError("Please insert Token ", 400);
     }
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 

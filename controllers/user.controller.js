@@ -52,7 +52,9 @@ const loginUser = async (req, res, next) => {
       data: user,
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 const forgotPassword = async (req, res, next) => {
@@ -73,7 +75,9 @@ const forgotPassword = async (req, res, next) => {
       message: "Please check your email for our password recovery email",
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 const resetPassword = async (req, res, next) => {
@@ -88,7 +92,9 @@ const resetPassword = async (req, res, next) => {
       message: "Password successfully reset",
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 
@@ -103,7 +109,9 @@ const currentUser = async (req, res, next) => {
       user: user,
     });
   } catch (error) {
-    next(error);
+    if (error instanceof CustomError) {
+      next(error);
+    }
   }
 };
 module.exports = { loginUser, forgotPassword, resetPassword, currentUser };
