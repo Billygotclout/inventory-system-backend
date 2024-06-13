@@ -1,15 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 const dbConnect = require("./config/dbConnect.config");
+const path = require("path");
 const userRepository = require("./data/user.repository");
 require("dotenv").config();
 const app = express();
-const port = process.env.PORT || 30001;
+const port = process.env.PORT || 3001;
 
 dbConnect();
 app.use(express.json());
 app.use(cors());
-app.use(express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.get("/", (req, res) => {
   res.send("API is running");
 });

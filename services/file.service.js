@@ -9,10 +9,11 @@ const csvParser = require("csv-parser");
 
 const Inventory = require("../models/Inventory");
 exports.uploadFile = async ({ filename, filepath, user_id }) => {
-  const hash = await fileRepository.calculateFileHash(filepath);
-  const existingFile = await FileUpload.findOne({ hash });
+  const fileP = path.join(__dirname, "../uploads", filename);
+  const hash = await fileRepository.calculateFileHash(fileP);
+  const existingFile = await FileUpload.findOne({ hash: hash });
   if (existingFile) {
-    fs.unlinkSync(filepath);
+    fs.unlinkSync(fileP);
     throw new CustomError("File already uploaded.", 400);
   }
 
@@ -30,7 +31,8 @@ exports.viewFileContents = async (id) => {
   if (!file) {
     throw new CustomError("File not found", 404);
   }
-  const filepath = path.resolve(file.filepath);
+  const fileP = path.join(__dirname, "../uploads", file.filename);
+  const filepath = path.resolve(fileP);
   const ext = path.extname(file.filename);
   if (ext === ".xlsx" || ext === ".xls") {
     const workbook = XLSX.readFile(filepath, {
@@ -79,9 +81,9 @@ exports.insertApprovedData = async ({ user_id, id }) => {
     throw new CustomError("File not found", 404);
   }
 
-  const filepath = path.resolve(file.filepath);
+  const fileP = path.join(__dirname, "../uploads", file.filename);
+  const filepath = path.resolve(fileP);
   const ext = path.extname(file.filename);
-
   if (ext === ".xlsx" || ext === ".xls") {
     const workbook = XLSX.readFile(filepath, {
       cellDates: true,
@@ -180,7 +182,8 @@ exports.unapproveData = async ({ id }) => {
   if (!file) {
     throw new CustomError("File not found", 404);
   }
-  fs.unlink(`${file.filepath}`, (err) => {
+  const filepath = path.join(__dirname, "../uploads", file.filename);
+  fs.unlink(`${filepath}`, (err) => {
     if (err) console.log(err);
   });
   await FileUpload.deleteOne({ _id: file._id });

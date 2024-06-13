@@ -1,5 +1,5 @@
 const express = require("express");
-const multer = require("multer");
+
 const validateToken = require("../middleware/validateToken");
 const roleChecker = require("../middleware/roleChecker");
 const {
@@ -8,27 +8,10 @@ const {
   saveApprovedDataToDatabase,
   cancelDataRequest,
 } = require("../controllers/file.controller");
-const path = require("path");
+
 const CustomError = require("../utils/CustomError");
+const upload = require("../config/upload.config");
 const router = express.Router();
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../uploads/"));
-  },
-
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-const fileFilter = (req, file, cb) => {
-  const ext = path.extname(file.originalname).toLowerCase();
-  if (ext !== ".xls" && ext !== ".xlsx" && ext !== ".csv") {
-    return cb(new CustomError("Unsupported file type", 400), false);
-  }
-  cb(null, true);
-};
-
-const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 router.use(validateToken);
 router
