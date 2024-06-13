@@ -12,6 +12,21 @@ dbConnect();
 app.use(express.json());
 app.use(cors());
 app.use(errorHandler);
+if (app.get("env") === "development") {
+  app.use((err, req, res, next) => {
+    console.error(err.stack); // Log the error stack trace
+    res.status(err.status || 500).send({
+      message: err.message,
+      error: err,
+    });
+  });
+} else {
+  // Production-specific error handler
+  app.use((err, req, res, next) => {
+    console.error(err.stack); // Log the error stack trace
+    res.status(err.status || 500).send("Something went wrong!");
+  });
+}
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.get("/", (req, res) => {
   res.send("API is running");
