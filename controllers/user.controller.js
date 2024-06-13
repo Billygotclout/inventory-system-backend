@@ -1,10 +1,12 @@
 const userService = require("../services/user.service");
 const jwt = require("jsonwebtoken");
+const userRepository = require("../data/user.repository");
 
 require("dotenv").config();
 const CustomError = require("../utils/CustomError");
 const sendMail = require("../utils/sendMail");
 const User = require("../models/User");
+const createActivityLog = require("../utils/activityLog");
 const loginUser = async (req, res, next) => {
   const { email, password, rememberMe } = req.body;
   try {
@@ -41,11 +43,30 @@ const loginUser = async (req, res, next) => {
         }
       );
       user.rememberToken = rememberToken;
+
       await user.save();
+      await createActivityLog({
+        user_id: user._id,
+        ip_address: req.ip,
+        user_agent:
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
+        title: "Login",
+        activity: "User Successfully logged in",
+        module: "Authentication Module",
+      });
     } else {
       user.rememberToken = "";
+      await createActivityLog({
+        user_id: user._id,
+        ip_address: req.ip,
+        user_agent: req.get("User-Agent"),
+        title: "Login",
+        activity: "User Successfully logged in",
+        module: "Authentication Module",
+      });
     }
     await user.save();
+
     return res.json({
       message: "User logged in successfully",
       token: token,
@@ -59,6 +80,7 @@ const loginUser = async (req, res, next) => {
 };
 const forgotPassword = async (req, res, next) => {
   try {
+    const user = userRepository.getByEmail(req.body.email);
     const forgotPasswordToken = await userService.passwordRecovery({
       email: req.body.email,
     });
@@ -71,6 +93,15 @@ const forgotPassword = async (req, res, next) => {
         `http://localhost:3000/api/auth/reset-password/${forgotPasswordToken}\n\n` +
         `If you did not request this, please ignore this email and your password will remain unchanged.\n`,
     });
+    await createActivityLog({
+      user_id: user._id,
+      ip_address: req.ip,
+      user_agent: req.get("User-Agent"),
+      title: "Forgot Password",
+      activity: `User ${req.body.email} is attempting to reset password`,
+      module: "Authentication Module",
+    });
+
     return res.json({
       message: "Please check your email for our password recovery email",
     });
@@ -82,9 +113,18 @@ const forgotPassword = async (req, res, next) => {
 };
 const resetPassword = async (req, res, next) => {
   try {
+    const user = userRepository.getByEmail(req.body.email);
     await userService.passwordChange({
       token: req.params.token,
       password: req.body.password,
+    });
+    await createActivityLog({
+      user_id: user._id,
+      ip_address: req.ip,
+      user_agent: req.get("User-Agent"),
+      title: "Reset Password",
+      activity: `User ${user.email} has successfully  reset password`,
+      module: "Authentication Module",
     });
 
     // If no error was thrown, it means the password change was successful
@@ -104,6 +144,14 @@ const currentUser = async (req, res, next) => {
     if (!user) {
       throw new CustomError("User not found", 404);
     }
+    await createActivityLog({
+      user_id: user._id,
+      ip_address: req.ip,
+      user_agent: req.get("User-Agent"),
+      title: "Current User",
+      activity: `User ${user.email} user has been gotten`,
+      module: "Authentication Module",
+    });
     return res.json({
       message: "user fetched",
       user: user,

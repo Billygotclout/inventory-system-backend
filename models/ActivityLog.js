@@ -8,12 +8,10 @@ const activityLogSchema = mongoose.Schema({
   },
   ip_address: {
     type: String,
-
     required: true,
   },
   device: {
     type: String,
-
     required: true,
   },
   title: {
@@ -25,11 +23,11 @@ const activityLogSchema = mongoose.Schema({
     required: true,
   },
   time: {
-    type: string,
+    type: Date,
     required: true,
   },
   module: {
-    type: string,
+    type: String,
     required: true,
   },
 });

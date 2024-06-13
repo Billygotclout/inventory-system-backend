@@ -1,23 +1,37 @@
 const ActivityLog = require("../models/ActivityLog");
 const os = require("os");
+const UAParser = require("ua-parser-js");
+const CustomError = require("../utils/CustomError");
+
 const createActivityLog = async ({
   user_id,
   ip_address,
-  device,
+
+  user_agent,
   title,
   activity,
-  time,
   module,
 }) => {
-  const activity = await ActivityLog.create({
+  const parser = UAParser(`${user_agent}`);
+
+  const activityL = new ActivityLog({
     user_id: user_id,
     ip_address: ip_address,
-    device: os.platform(),
-    title,
-    activity,
-    time,
-    module,
+
+    device: parser.device.vendor || os.platform(),
+    title: title,
+    activity: activity,
+    time: new Date(Date.now() + 3600000), // More explicit time calculation
+    module: module,
   });
+
+  await activityL.save();
+
+  if (!activityL) {
+    throw new CustomError("Activity could not be created", 400);
+  }
+
+  return activityL;
 };
 
 module.exports = createActivityLog;

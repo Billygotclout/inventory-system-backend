@@ -45,7 +45,7 @@ exports.passwordChange = async ({ token, password }) => {
     await user.save();
 
     // Return a success message or boolean
-    return { success: true, message: "Password changed successfully" };
+    return "Password changed successfully";
   } catch (error) {
     // Throw the error instead of returning it
     throw error;
