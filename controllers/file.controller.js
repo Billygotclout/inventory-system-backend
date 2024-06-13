@@ -5,7 +5,7 @@ const uploadFileForApproval = async (req, res, next) => {
   try {
     const fileUrl = `${req.protocol}://${req.get("host")}/${path.join(
       __dirname,
-      "uploads"
+      "../uploads"
     )}/${req.file.filename}`;
 
     const upload = await fileService.uploadFile({
