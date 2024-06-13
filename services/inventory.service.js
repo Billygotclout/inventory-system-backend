@@ -37,25 +37,17 @@ exports.createInventory = async (payload) => {
     );
   } else {
     const newInventory = await Inventory.create(payload);
-    if (!newInventory) {
-      throw new CustomError("Error creating inventory", 404);
-    }
+
     return newInventory;
   }
 };
 exports.viewInventory = async (id) => {
   const inventory = await inventoryRepository.get(id);
-  if (!inventory) {
-    throw new CustomError("Inventory with that id not found", 404);
-  }
 
   return inventory;
 };
 exports.aprroveSingleInventoryDataInsertion = async (id) => {
   const inventory = await inventoryRepository.get(id);
-  if (!inventory) {
-    throw new CustomError("Inventory with that id not found", 404);
-  }
 
   const approvedInventory = await inventoryRepository.update(id, {
     status: "approved",

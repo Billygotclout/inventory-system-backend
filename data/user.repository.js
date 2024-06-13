@@ -3,9 +3,9 @@ const CustomError = require("../utils/CustomError");
 
 exports.get = async (id) => {
   const existingUser = await User.findOne({ _id: id });
-  // if (!existingUser) {
-  //   throw new CustomError("User not found", 404);
-  // }
+  if (!existingUser) {
+    throw new CustomError("User not found", 404);
+  }
   return existingUser;
 };
 exports.getOne = async (payload) => {
@@ -15,9 +15,9 @@ exports.getOne = async (payload) => {
 };
 exports.getByEmail = async (email) => {
   const existingUser = await User.findOne({ email: email });
-  // if (!existingUser) {
-  //   throw new CustomError("User not found", 404);
-  // }
+  if (!existingUser) {
+    throw new CustomError("User not found", 404);
+  }
   return existingUser;
 };
 
@@ -31,9 +31,9 @@ exports.getCount = async () => {
 exports.create = async (payload) => {
   try {
     const newUser = await User.create(payload);
-    // if (!newUser) {
-    //   throw new CustomError("Error creating user", 400);
-    // }
+    if (!newUser) {
+      throw new CustomError("Error creating user", 400);
+    }
     return newUser;
   } catch (error) {
     throw error;
