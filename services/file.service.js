@@ -80,8 +80,7 @@ exports.insertApprovedData = async ({ user_id, id }) => {
     throw new CustomError("File not found", 404);
   }
 
-  const fileP = path.join(__dirname, "../uploads", file.filename);
-  const filepath = path.resolve(fileP);
+  const filepath = path.resolve(file.filepath);
   const ext = path.extname(file.filename);
   if (ext === ".xlsx" || ext === ".xls") {
     const workbook = XLSX.readFile(filepath, {
@@ -181,8 +180,8 @@ exports.unapproveData = async ({ id }) => {
   if (!file) {
     throw new CustomError("File not found", 404);
   }
-  const filepath = path.join(__dirname, "../uploads", file.filename);
-  fs.unlink(`${filepath}`, (err) => {
+
+  fs.unlink(`${file.filepath}`, (err) => {
     if (err) console.log(err);
   });
   await FileUpload.deleteOne({ _id: file._id });
