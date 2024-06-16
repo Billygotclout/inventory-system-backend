@@ -20,7 +20,7 @@ app.use("/api/auth", require("./routes/user.routes"));
 app.use("/api/file", require("./routes/file.routes"));
 app.use("/api/inventory", require("./routes/inventory.routes"));
 app.use("/api/checker", require("./routes/checker.routes"));
-app.use(errorHandler);
+// app.use(errorHandler);
 app.listen(port, () => {
   console.log(`Server is listening on http://localhost:${port}`);
 });
