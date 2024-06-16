@@ -17,11 +17,10 @@ const createActivityLog = async ({
   const activityL = new ActivityLog({
     user_id: user_id,
     ip_address: ip_address,
-
     device: parser.device.vendor || os.platform(),
     title: title,
     activity: activity,
-    time: new Date(Date.now() + 3600000), // More explicit time calculation
+    time: new Date(Date.now() + 3600000),
     module: module,
   });
 

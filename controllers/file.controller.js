@@ -1,6 +1,7 @@
 const fileService = require("../services/file.service");
 const CustomError = require("../utils/CustomError");
 const path = require("path");
+const sendMail = require("../utils/sendMail");
 const uploadFileForApproval = async (req, res, next) => {
   try {
     const upload = await fileService.uploadFile({
@@ -11,7 +12,11 @@ const uploadFileForApproval = async (req, res, next) => {
     if (!upload) {
       throw new CustomError("Error uploading file", 400);
     }
-
+    // await sendMail({
+    //   email: "",
+    //   subject: "Request for approval",
+    //   text: "Please ",
+    // });
     return res.json({
       message: "File uploaded successfully, checker will go through file",
       file: upload._id,

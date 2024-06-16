@@ -6,6 +6,7 @@ const path = require("path");
 const crypto = require("crypto");
 const XLSX = require("xlsx");
 const csvParser = require("csv-parser");
+const sendMail = require("../utils/sendMail");
 
 const Inventory = require("../models/Inventory");
 exports.uploadFile = async ({ filename, filepath, user_id }) => {
@@ -49,6 +50,7 @@ exports.viewFileContents = async (id) => {
         new Date(row["Delivery Date"])
       ),
       color: row["Colour"],
+      quantity: parseInt(row["Quantity"]),
       costPerUnit: parseFloat(row["Cost Per Unit"]),
 
       status: "approved",

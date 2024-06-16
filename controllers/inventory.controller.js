@@ -1,6 +1,6 @@
 const inventoryService = require("../services/inventory.service");
 const CustomError = require("../utils/CustomError");
-
+const sendMail = require("../utils/sendMail");
 const toggleInventoryType = async (req, res, next) => {
   try {
     const updateInventoryTypeStatus = await inventoryService.toggleIsActiveType(
@@ -81,6 +81,11 @@ const createNewInventory = async (req, res, next) => {
       quantity: req.body.quantity,
       status: "pending",
       category: req.body.category || null,
+    });
+    await sendMail({
+      email: "",
+      subject: "Request for approval",
+      text: "Please ",
     });
     return res.json({
       message: "Inventory item successfully created",
