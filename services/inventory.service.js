@@ -22,6 +22,7 @@ exports.toggleIsActiveType = async ({ category, isActive }) => {
 exports.getAllInventoryData = async () => {
   const inventories = await inventoryRepository.getwhere({
     status: "approved",
+    issuedOut: false,
   });
   return inventories;
 };

@@ -16,9 +16,13 @@ const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
+const paymentUploadsDir = path.join(__dirname, "uploads/payments");
+if (!fs.existsSync(paymentUploadsDir)) {
+  fs.mkdirSync(paymentUploadsDir);
+}
 
-// Serve static files from the 'uploads' directory
 app.use("/uploads", express.static(uploadsDir));
+app.use("/uploads/payments", express.static(paymentUploadsDir));
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -27,6 +31,7 @@ app.use("/api/auth", require("./routes/user.routes"));
 app.use("/api/file", require("./routes/file.routes"));
 app.use("/api/inventory", require("./routes/inventory.routes"));
 app.use("/api/checker", require("./routes/checker.routes"));
+app.use("/api/stockout", require("./routes/stockout.routes"));
 app.use(errorHandler);
 app.listen(port, () => {
   console.log(`Server is listening on http://localhost:${port}`);

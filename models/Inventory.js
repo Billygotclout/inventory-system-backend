@@ -23,7 +23,7 @@ const inventorySchema = mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["pending", "approved"],
+      enum: ["pending", "approved", "rejected"],
       default: "pending",
     },
     image: {
@@ -56,6 +56,10 @@ const inventorySchema = mongoose.Schema(
     active: {
       type: Boolean,
       default: true,
+    },
+    issuedOut: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
