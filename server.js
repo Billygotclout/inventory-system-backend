@@ -5,6 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const userRepository = require("./data/user.repository");
 const errorHandler = require("./middleware/errorHandler");
+const logger = require("./utils/logger");
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3001;
@@ -34,5 +35,5 @@ app.use("/api/checker", require("./routes/checker.routes"));
 app.use("/api/stockout", require("./routes/stockout.routes"));
 app.use(errorHandler);
 app.listen(port, () => {
-  console.log(`Server is listening on http://localhost:${port}`);
+  logger.info(`Server is listening on http://localhost:${port}`);
 });
