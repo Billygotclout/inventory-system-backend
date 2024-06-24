@@ -31,6 +31,12 @@ const generateRandomUsers = () => {
       role: "maker",
       status: "active",
     },
+    {
+      email: "famakindeolamide@gmail.com",
+      password: bcrpyt.hashSync("vnp-1234", 10),
+      role: "checker",
+      status: "active",
+    },
   ];
   return users;
 };
