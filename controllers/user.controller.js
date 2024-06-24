@@ -84,14 +84,14 @@ const forgotPassword = async (req, res, next) => {
         `http://localhost:5173/changepassword/${forgotPasswordToken}\n\n` +
         `If you did not request this, please ignore this email and your password will remain unchanged.\n`,
     });
-    await createActivityLog({
-      user_id: user._id,
-      ip_address: req.ip,
-      user_agent: req.get("User-Agent"),
-      title: "Forgot Password",
-      activity: `User ${req.body.email} is attempting to reset password`,
-      module: "Authentication Module",
-    });
+    // await createActivityLog({
+    //   user_id: user._id,
+    //   ip_address: req.ip,
+    //   user_agent: req.get("User-Agent"),
+    //   title: "Forgot Password",
+    //   activity: `User ${req.body.email} is attempting to reset password`,
+    //   module: "Authentication Module",
+    // });
 
     return res.json({
       message: "Please check your email for our password recovery email",
