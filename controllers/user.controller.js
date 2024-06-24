@@ -123,10 +123,7 @@ const resetPassword = async (req, res, next) => {
       title: "Reset Password",
       activity: `User ${user.email} has successfully  reset password`,
       module: "Authentication Module",
-    }).catch((err) => {
-      throw new CustomError(`Error creating activity log: ${err}`, 500);
     });
-
     // If no error was thrown, it means the password change was successful
     return res.json({
       message: "Password successfully reset",
