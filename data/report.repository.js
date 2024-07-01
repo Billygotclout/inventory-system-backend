@@ -117,7 +117,7 @@ exports.createExcelFile = ({ data, headers, format }) => {
 };
 exports.createPdfFile = async ({ data, headers }) => {
   try {
-    const doc = new PDFDocument({ margin: 50 });
+    const doc = new PDFDocument({ margin: 30, padding: 50 });
     const pdfPath = path.join(__dirname, "..", "report.pdf");
     const writeStream = fs.createWriteStream(pdfPath);
 
@@ -136,6 +136,9 @@ exports.createPdfFile = async ({ data, headers }) => {
         doc.font("Helvetica").fontSize(8);
         doc.fillColor("black");
       },
+
+      columnSpacing: 10,
+      rowSpacing: 10,
     });
 
     doc.end();
