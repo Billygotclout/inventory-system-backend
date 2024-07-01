@@ -125,20 +125,21 @@ exports.createPdfFile = async ({ data, headers }) => {
     doc.pipe(writeStream);
 
     const table = {
-      title: "INVENTORY PDF",
+      title: "INVENTORY Report",
       headers: headers,
       rows: data,
     };
 
     doc.table(table, {
       prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),
+
       prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
         doc.font("Helvetica").fontSize(8);
         doc.fillColor("black");
       },
-
       columnSpacing: 10,
-      rowSpacing: 10,
+      padding: 10,
+      align: "center",
     });
 
     doc.end();
