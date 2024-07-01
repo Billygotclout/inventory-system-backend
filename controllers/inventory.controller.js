@@ -1,4 +1,5 @@
 const inventoryService = require("../services/inventory.service");
+const inventoryRepository = require("../data/inventory.repository");
 const CustomError = require("../utils/CustomError");
 const sendMail = require("../utils/sendMail");
 const toggleInventoryType = async (req, res, next) => {
@@ -97,10 +98,22 @@ const createNewInventory = async (req, res, next) => {
     }
   }
 };
+const searchInventoryItems = async (req, res, next) => {
+  try {
+    const searchItems = await inventoryRepository.searchItems(req.query.term);
+    res.json({
+      message: "successfully fetched",
+      items: searchItems,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   toggleInventoryType,
   createNewInventory,
   getAllInventoryItems,
   getInventoryItem,
   approveInventory,
+  searchInventoryItems,
 };

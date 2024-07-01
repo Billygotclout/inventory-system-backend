@@ -20,10 +20,10 @@ exports.toggleIsActiveType = async ({ category, isActive }) => {
   return updatedInventories;
 };
 exports.getAllInventoryData = async () => {
-  const inventories = await inventoryRepository.getwhere({
-    status: "approved",
-    issuedOut: false,
-  });
+  const inventories = await inventoryRepository.getwhereOrWhere([
+    { status: "approved" },
+  ]);
+
   return inventories;
 };
 exports.createInventory = async (payload) => {

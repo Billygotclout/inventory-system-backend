@@ -18,24 +18,32 @@ const generateRandomUsers = () => {
       password: bcrpyt.hashSync("vnp-1234", 10),
       role: "admin",
       status: "active",
+      createdAt: new Date(Date.now() + 3600000),
+      updatedAt: new Date(Date.now() + 3600000),
     },
     {
       email: "checker@checker.com",
       password: bcrpyt.hashSync("vnp-1234", 10),
       role: "checker",
       status: "active",
+      createdAt: new Date(Date.now() + 3600000),
+      updatedAt: new Date(Date.now() + 3600000),
     },
     {
       email: "maker@maker.com",
       password: bcrpyt.hashSync("vnp-1234", 10),
       role: "maker",
       status: "active",
+      createdAt: new Date(Date.now() + 3600000),
+      updatedAt: new Date(Date.now() + 3600000),
     },
     {
       email: "famakindeolamide@gmail.com",
       password: bcrpyt.hashSync("vnp-1234", 10),
       role: "checker",
       status: "active",
+      createdAt: new Date(Date.now() + 3600000),
+      updatedAt: new Date(Date.now() + 3600000),
     },
   ];
   return users;

@@ -33,7 +33,8 @@ app.use("/api/file", require("./routes/file.routes"));
 app.use("/api/inventory", require("./routes/inventory.routes"));
 app.use("/api/checker", require("./routes/checker.routes"));
 app.use("/api/stockout", require("./routes/stockout.routes"));
-app.use(errorHandler);
+app.use("/api/report", require("./routes/report.routes"));
+// app.use(errorHandler);
 app.listen(port, () => {
   logger.info(`Server is listening on http://localhost:${port}`);
 });
