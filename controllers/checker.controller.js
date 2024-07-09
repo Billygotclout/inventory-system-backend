@@ -12,9 +12,7 @@ const createUserDetails = async (req, res, next) => {
       data: createUserDetails,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-    }
+    next(error);
   }
 };
 const toggleUserStatus = async (req, res, next) => {
@@ -29,9 +27,7 @@ const toggleUserStatus = async (req, res, next) => {
       data: user,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-    }
+    next(error);
   }
 };
 const getAll = async (req, res, next) => {
@@ -43,9 +39,7 @@ const getAll = async (req, res, next) => {
       data: users,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-    }
+    next(error);
   }
 };
 

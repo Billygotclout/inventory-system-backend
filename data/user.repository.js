@@ -15,9 +15,7 @@ exports.getOne = async (payload) => {
 };
 exports.getByEmail = async (email) => {
   const existingUser = await User.findOne({ email: email });
-  if (!existingUser) {
-    throw new CustomError("User not found", 404);
-  }
+
   return existingUser;
 };
 
