@@ -1,5 +1,6 @@
 const reportService = require("../services/report.service");
 const reportRepository = require("../data/report.repository");
+const logger = require("../utils/logger");
 const generateReport = async (req, res, next) => {
   try {
     let response;
@@ -31,6 +32,7 @@ const generateReport = async (req, res, next) => {
     return res.send(response);
   } catch (error) {
     next(error);
+    logger.error(error.message);
   }
 };
 

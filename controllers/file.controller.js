@@ -2,6 +2,7 @@ const fileService = require("../services/file.service");
 const CustomError = require("../utils/CustomError");
 const path = require("path");
 const sendMail = require("../utils/sendMail");
+const logger = require("../utils/logger");
 const uploadFileForApproval = async (req, res, next) => {
   try {
     const upload = await fileService.uploadFile({
@@ -24,6 +25,7 @@ const uploadFileForApproval = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -37,6 +39,7 @@ const checkUploadedFile = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -55,6 +58,7 @@ const saveApprovedDataToDatabase = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -69,6 +73,7 @@ const cancelDataRequest = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };

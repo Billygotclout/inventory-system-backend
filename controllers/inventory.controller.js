@@ -2,6 +2,7 @@ const inventoryService = require("../services/inventory.service");
 const inventoryRepository = require("../data/inventory.repository");
 const CustomError = require("../utils/CustomError");
 const sendMail = require("../utils/sendMail");
+const logger = require("../utils/logger");
 const toggleInventoryType = async (req, res, next) => {
   try {
     const updateInventoryTypeStatus = await inventoryService.toggleIsActiveType(
@@ -23,6 +24,7 @@ const toggleInventoryType = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -38,6 +40,7 @@ const approveInventory = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -52,6 +55,7 @@ const getAllInventoryItems = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -66,6 +70,7 @@ const getInventoryItem = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -95,6 +100,7 @@ const createNewInventory = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -107,6 +113,7 @@ const searchInventoryItems = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+    logger.error(error.message);
   }
 };
 module.exports = {

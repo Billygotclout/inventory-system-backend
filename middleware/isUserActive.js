@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const CustomError = require("../utils/CustomError");
+const logger = require("../utils/logger");
 
 const isUserActive = async (req, res, next) => {
   try {
@@ -18,6 +19,7 @@ const isUserActive = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };

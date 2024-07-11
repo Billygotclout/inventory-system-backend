@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const CustomError = require("../utils/CustomError");
+const logger = require("../utils/logger");
 
 // check user role and grant access
 const roleChecker = (roles) => async (req, res, next) => {
@@ -15,6 +16,7 @@ const roleChecker = (roles) => async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };

@@ -7,6 +7,7 @@ const CustomError = require("../utils/CustomError");
 const sendMail = require("../utils/sendMail");
 const User = require("../models/User");
 const createActivityLog = require("../utils/activityLog");
+const logger = require("../utils/logger");
 const loginUser = async (req, res, next) => {
   const { email, password, rememberMe } = req.body;
   try {
@@ -69,6 +70,7 @@ const loginUser = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -106,6 +108,7 @@ const forgotPassword = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -131,6 +134,7 @@ const resetPassword = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };
@@ -158,6 +162,7 @@ const currentUser = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };

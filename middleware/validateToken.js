@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const CustomError = require("../utils/CustomError");
+const logger = require("../utils/logger");
 
 const validateToken = async (req, res, next) => {
   try {
@@ -23,6 +24,7 @@ const validateToken = async (req, res, next) => {
   } catch (error) {
     if (error instanceof CustomError) {
       next(error);
+      logger.error(error.message);
     }
   }
 };

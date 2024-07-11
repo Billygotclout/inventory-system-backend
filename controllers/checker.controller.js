@@ -1,4 +1,5 @@
 const checkerService = require("../services/checker.service");
+const logger = require("../utils/logger");
 
 const createUserDetails = async (req, res, next) => {
   try {
@@ -13,6 +14,7 @@ const createUserDetails = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+    logger.error(error.message);
   }
 };
 const toggleUserStatus = async (req, res, next) => {
@@ -28,6 +30,7 @@ const toggleUserStatus = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+    logger.error(error.message);
   }
 };
 const getAll = async (req, res, next) => {
@@ -40,6 +43,7 @@ const getAll = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+    logger.error(error.message);
   }
 };
 
