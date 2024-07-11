@@ -7,7 +7,6 @@ const dbConnect = async () => {
   logger.info(
     `Db connected: ${connect.connection.host} ${connect.connection.name}`
   );
-  logger.error(error.message);
 };
 
 module.exports = dbConnect;
