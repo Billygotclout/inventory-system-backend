@@ -12,7 +12,12 @@ const port = process.env.PORT || 3001;
 
 dbConnect();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    optionsSuccessStatus: 200,
+  })
+);
 const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
