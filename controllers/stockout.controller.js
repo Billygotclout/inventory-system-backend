@@ -17,7 +17,7 @@ const issueRequester = async (req, res, next) => {
       phone,
       items,
       purpose,
-      paymentEvidencePath: req.file.filename,
+      paymentEvidencePath: req.file.name,
       user_id: req.user.id,
     });
     res.status(201).json({
