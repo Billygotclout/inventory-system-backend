@@ -36,6 +36,10 @@ exports.issue = async ({
     user_id: user_id,
   });
   await requester.save();
+  await requester.populate({
+    path: "items",
+    model: "Inventory",
+  });
 
   return requester;
 };
