@@ -26,9 +26,6 @@ const issueRequester = async (req, res, next) => {
       details: requester,
     });
   } catch (error) {
-    fs.unlink(`${req.file.path}`, (err) => {
-      if (err) console.log(err);
-    });
     next(error);
     logger.error(error.message);
   }
