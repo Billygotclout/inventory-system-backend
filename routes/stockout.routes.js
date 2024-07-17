@@ -17,11 +17,11 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, "../uploads/payments"));
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
+    cb(null, Date.now() + "-" + file.name);
   },
 });
 const fileFilter = (req, file, cb) => {
-  const ext = path.extname(file.originalname).toLowerCase();
+  const ext = path.extname(file.name).toLowerCase();
   if (ext !== ".jpg" && ext !== ".jpeg" && ext !== ".png" && ext !== ".pdf") {
     return cb(new CustomError("Unsupported file type", 400), false);
   }
