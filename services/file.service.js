@@ -9,6 +9,11 @@ const csvParser = require("csv-parser");
 const sendMail = require("../utils/sendMail");
 
 const Inventory = require("../models/Inventory");
+
+exports.getFileDeta = async () => {
+  const file = await fileRepository.getAll();
+  return file;
+};
 exports.uploadFile = async ({ filename, filepath, user_id }) => {
   const hash = await fileRepository.calculateFileHash(filepath);
   const existingFile = await FileUpload.findOne({ hash: hash });
@@ -186,6 +191,6 @@ exports.unapproveData = async ({ id }) => {
   fs.unlink(`${file.filepath}`, (err) => {
     if (err) console.log(err);
   });
-  await FileUpload.deleteOne({ _id: file._id });
+  await fileRepository.update(id, { status: "rejected" });
   await Inventory.deleteMany({ file_id: file._id });
 };

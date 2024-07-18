@@ -26,6 +26,21 @@ exports.calculateFileHash = (filepath) => {
     });
   });
 };
+exports.getAll = async () => {
+  return await File.find();
+};
+exports.update = async (id, updatedFile) => {
+  try {
+    const updatedFileDetails = await File.findOneAndUpdate(
+      { _id: id },
+      updatedFile
+    );
+
+    return updatedFileDetails;
+  } catch (err) {
+    throw err;
+  }
+};
 exports.update = async (id, updatedFile) => {
   try {
     const updatedFileDetails = await File.findOneAndUpdate(

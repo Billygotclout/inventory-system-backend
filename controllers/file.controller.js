@@ -3,6 +3,19 @@ const CustomError = require("../utils/CustomError");
 const path = require("path");
 const sendMail = require("../utils/sendMail");
 const logger = require("../utils/logger");
+
+const getallFiles = async (req, res, next) => {
+  try {
+    const files = await fileService.getFileDeta();
+
+    return res.json({
+      message: "Files gotten",
+      data: files,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 const uploadFileForApproval = async (req, res, next) => {
   try {
     const upload = await fileService.uploadFile({
@@ -83,4 +96,5 @@ module.exports = {
   checkUploadedFile,
   saveApprovedDataToDatabase,
   cancelDataRequest,
+  getallFiles,
 };
