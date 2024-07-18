@@ -65,10 +65,8 @@ const saveApprovedDataToDatabase = async (req, res, next) => {
       productsNumber: saveFileDataToDb,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 const cancelDataRequest = async (req, res, next) => {
@@ -80,10 +78,8 @@ const cancelDataRequest = async (req, res, next) => {
       message: "Request cancelled, files deleted",
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 
