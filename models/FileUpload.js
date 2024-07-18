@@ -25,6 +25,13 @@ const fileUploadSchema = mongoose.Schema(
       enum: ["pending", "approved", "rejected"],
       default: "pending",
     },
+    remark: {
+      type: String,
+    },
+    checker_mail: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

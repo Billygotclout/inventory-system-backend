@@ -46,3 +46,9 @@
 [2024-07-19 12:01:08.921 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-01.wjhdnzn.mongodb.net inventory-system[39m
 [2024-07-19 12:01:23.609 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
 [2024-07-19 12:01:26.237 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-02.wjhdnzn.mongodb.net inventory-system[39m
+[2024-07-19 12:23:04.967 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-19 12:23:07.698 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-01.wjhdnzn.mongodb.net inventory-system[39m
+[2024-07-19 12:23:10.582 AM] [31merror[39m: 	[31mFile already uploaded.[39m
+[2024-07-19 12:23:15.325 AM] [31merror[39m: 	[31mFile already uploaded.[39m
+[2024-07-19 12:23:51.055 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-19 12:23:53.622 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-02.wjhdnzn.mongodb.net inventory-system[39m

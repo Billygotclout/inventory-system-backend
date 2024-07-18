@@ -22,6 +22,8 @@ const uploadFileForApproval = async (req, res, next) => {
       filename: req.file.filename,
       filepath: req.file.path,
       user_id: req.user.id,
+      remark: req.body.remark,
+      checker_mail: req.body.checker_mail,
     });
     if (!upload) {
       throw new CustomError("Error uploading file", 400);

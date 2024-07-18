@@ -15,7 +15,13 @@ exports.getFileDeta = async () => {
 
   return file;
 };
-exports.uploadFile = async ({ filename, filepath, user_id }) => {
+exports.uploadFile = async ({
+  filename,
+  checker_mail,
+  remark,
+  filepath,
+  user_id,
+}) => {
   const hash = await fileRepository.calculateFileHash(filepath);
   const existingFile = await FileUpload.findOne({ hash: hash });
   if (existingFile) {
@@ -28,7 +34,10 @@ exports.uploadFile = async ({ filename, filepath, user_id }) => {
     filepath: filepath,
     hash: hash,
     user_id: user_id,
+    remark: remark,
+    checker_mail: checker_mail,
   });
+
   await newFile.save();
   return newFile;
 };
