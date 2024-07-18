@@ -18,3 +18,22 @@
 [2024-07-18 10:04:12.985 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
 [2024-07-18 10:04:15.921 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-02.wjhdnzn.mongodb.net inventory-system[39m
 [2024-07-18 10:04:37.660 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-18 10:04:42.243 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-02.wjhdnzn.mongodb.net inventory-system[39m
+[2024-07-18 11:04:42.362 AM] [31merror[39m: 	[31mFile already uploaded.[39m
+[2024-07-18 11:09:49.926 AM] [31merror[39m: 	[31mFile already uploaded.[39m
+[2024-07-18 11:11:09.694 AM] [31merror[39m: 	[31mPlease contact your administrator for access permissions.[39m
+[2024-07-18 11:13:48.763 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-18 11:13:50.629 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-01.wjhdnzn.mongodb.net inventory-system[39m
+[2024-07-18 11:14:30.385 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-18 11:14:32.457 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-01.wjhdnzn.mongodb.net inventory-system[39m
+[2024-07-18 11:14:54.698 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-18 11:14:56.616 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-01.wjhdnzn.mongodb.net inventory-system[39m
+[2024-07-18 11:15:47.397 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-18 11:15:50.081 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-01.wjhdnzn.mongodb.net inventory-system[39m
+[2024-07-18 11:38:28.738 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-18 11:39:05.700 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-18 11:39:11.964 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-00.wjhdnzn.mongodb.net inventory-system[39m
+[2024-07-18 11:39:32.661 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-18 11:39:34.648 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-00.wjhdnzn.mongodb.net inventory-system[39m
+[2024-07-18 11:39:54.421 AM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-18 11:39:58.682 AM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-01.wjhdnzn.mongodb.net inventory-system[39m

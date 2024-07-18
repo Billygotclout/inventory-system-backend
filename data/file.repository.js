@@ -27,7 +27,10 @@ exports.calculateFileHash = (filepath) => {
   });
 };
 exports.getAll = async () => {
-  return await File.find();
+  return await File.find().populate({
+    path: "user_id",
+    model: "User",
+  });
 };
 exports.update = async (id, updatedFile) => {
   try {

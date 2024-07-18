@@ -12,6 +12,7 @@ const Inventory = require("../models/Inventory");
 
 exports.getFileDeta = async () => {
   const file = await fileRepository.getAll();
+
   return file;
 };
 exports.uploadFile = async ({ filename, filepath, user_id }) => {
