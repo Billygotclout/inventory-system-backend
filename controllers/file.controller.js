@@ -36,10 +36,8 @@ const uploadFileForApproval = async (req, res, next) => {
       file: upload._id,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 const checkUploadedFile = async (req, res, next) => {
@@ -50,10 +48,8 @@ const checkUploadedFile = async (req, res, next) => {
       data: checkFile,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 

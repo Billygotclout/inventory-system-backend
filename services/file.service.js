@@ -34,6 +34,7 @@ exports.uploadFile = async ({ filename, filepath, user_id }) => {
 };
 exports.viewFileContents = async (id) => {
   const file = await FileUpload.findById(id);
+
   if (!file) {
     throw new CustomError("File not found", 404);
   }
