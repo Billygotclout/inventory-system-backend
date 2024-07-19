@@ -89,9 +89,13 @@ exports.viewFileContents = async (id) => {
 
     return items;
   } else if (ext === ".csv") {
+    // Fetch the file from Cloudinary
+    const response = await axios.get(fileUrl, { responseType: "stream" });
+
+    // Process the CSV file in memory
     return new Promise((resolve, reject) => {
       let results = [];
-      fs.createReadStream(filepath)
+      response.data
         .pipe(csvParser())
         .on("data", (data) => results.push(data))
         .on("end", () => {
