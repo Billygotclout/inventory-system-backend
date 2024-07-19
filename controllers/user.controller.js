@@ -117,7 +117,7 @@ const resetPassword = async (req, res, next) => {
     });
     createActivityLog({
       user_id: user._id,
-      ip_address: req.ip,
+      ip_address: ":1",
       user_agent: req.get("User-Agent"),
       title: "Reset Password",
       activity: `User ${user.email} has successfully  reset password`,
