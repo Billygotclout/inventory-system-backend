@@ -167,9 +167,10 @@ exports.insertApprovedData = async ({ user_id, id }) => {
       return items.length;
     }
   } else if (ext === ".csv") {
+    const response = await axios.get(fileUrl, { responseType: "stream" });
     return new Promise((resolve, reject) => {
       const results = [];
-      fs.createReadStream(filepath)
+      response.data
         .pipe(csvParser())
         .on("data", (data) => {
           results.push({
