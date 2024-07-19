@@ -17,10 +17,8 @@ const isUserActive = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 

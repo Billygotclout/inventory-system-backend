@@ -14,10 +14,8 @@ const roleChecker = (roles) => async (req, res, next) => {
     }
     next();
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 

@@ -22,10 +22,8 @@ const toggleInventoryType = async (req, res, next) => {
       data: updateInventoryTypeStatus,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 const approveInventory = async (req, res, next) => {
@@ -38,10 +36,8 @@ const approveInventory = async (req, res, next) => {
       product: inventory,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 const getAllInventoryItems = async (req, res, next) => {
@@ -53,10 +49,8 @@ const getAllInventoryItems = async (req, res, next) => {
       data: getAllInventory,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 const getInventoryItem = async (req, res, next) => {
@@ -68,10 +62,8 @@ const getInventoryItem = async (req, res, next) => {
       data: getInventory,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 const createNewInventory = async (req, res, next) => {
@@ -98,10 +90,8 @@ const createNewInventory = async (req, res, next) => {
       data: createNew,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 const searchInventoryItems = async (req, res, next) => {

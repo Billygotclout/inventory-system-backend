@@ -68,10 +68,8 @@ const loginUser = async (req, res, next) => {
       data: user,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 const forgotPassword = async (req, res, next) => {
@@ -106,10 +104,8 @@ const forgotPassword = async (req, res, next) => {
       message: "Please check your email for our password recovery email",
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 const resetPassword = async (req, res, next) => {
@@ -132,10 +128,8 @@ const resetPassword = async (req, res, next) => {
       message: "Password successfully reset",
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 
@@ -160,10 +154,8 @@ const currentUser = async (req, res, next) => {
       user: user,
     });
   } catch (error) {
-    if (error instanceof CustomError) {
-      next(error);
-      logger.error(error.message);
-    }
+    next(error);
+    logger.error(error.message);
   }
 };
 module.exports = { loginUser, forgotPassword, resetPassword, currentUser };
