@@ -2,8 +2,9 @@ const FileUpload = require("../models/FileUpload");
 const fileRepository = require("../data/file.repository");
 const CustomError = require("../utils/CustomError");
 const fs = require("fs");
+const cloudinary = require("../config/cloudinary.config");
 const path = require("path");
-const crypto = require("crypto");
+const axios = require("axios");
 const XLSX = require("xlsx");
 const csvParser = require("csv-parser");
 const sendMail = require("../utils/sendMail");
@@ -12,7 +13,6 @@ const Inventory = require("../models/Inventory");
 
 exports.getFileDeta = async () => {
   const file = await fileRepository.getAll();
-
   return file;
 };
 exports.uploadFile = async ({
@@ -28,10 +28,20 @@ exports.uploadFile = async ({
     fs.unlinkSync(filepath);
     throw new CustomError("File already uploaded.", 400);
   }
+  const result = await cloudinary.uploader.upload(filepath, {
+    resource_type: "raw",
+    public_id: filename,
+    use_filename: true,
+    unique_filename: false,
+    folder: "excel",
+  });
+  fs.unlink(`${filepath}`, (err) => {
+    if (err) console.log(err);
+  });
 
   const newFile = new FileUpload({
     filename: filename,
-    filepath: filepath,
+    filepath: result.secure_url,
     hash: hash,
     user_id: user_id,
     remark: remark,
@@ -47,12 +57,16 @@ exports.viewFileContents = async (id) => {
   if (!file) {
     throw new CustomError("File not found", 404);
   }
+  const fileUrl = file.filepath;
 
   const filepath = path.resolve(file.filepath);
   const ext = path.extname(file.filename);
   if (ext === ".xlsx" || ext === ".xls") {
-    const workbook = XLSX.readFile(filepath, {
+    const response = await axios.get(fileUrl, { responseType: "arraybuffer" });
+    const data = response.data;
+    const workbook = XLSX.read(data, {
       cellDates: true,
+      type: "buffer",
     });
     const sheetName = workbook.SheetNames[0];
     const sheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
@@ -98,11 +112,17 @@ exports.insertApprovedData = async ({ user_id, id }) => {
     throw new CustomError("File not found", 404);
   }
 
+  const fileUrl = file.filepath;
+
   const filepath = path.resolve(file.filepath);
   const ext = path.extname(file.filename);
+
   if (ext === ".xlsx" || ext === ".xls") {
-    const workbook = XLSX.readFile(filepath, {
+    const response = await axios.get(fileUrl, { responseType: "arraybuffer" });
+    const data = response.data;
+    const workbook = XLSX.read(data, {
       cellDates: true,
+      type: "buffer",
     });
     const sheetName = workbook.SheetNames[0];
     const sheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
@@ -199,9 +219,6 @@ exports.unapproveData = async ({ id }) => {
     throw new CustomError("File not found", 404);
   }
 
-  fs.unlink(`${file.filepath}`, (err) => {
-    if (err) console.log(err);
-  });
   await fileRepository.update(id, { status: "rejected" });
   await Inventory.deleteMany({ file_id: file._id });
 };

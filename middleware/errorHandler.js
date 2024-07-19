@@ -6,7 +6,7 @@ const errorHandler = (err, req, res, next) => {
       message: err.message,
     });
   } else if (err instanceof Error) {
-    res.status(500).json({
+    res.status(400).json({
       message: err.message,
     });
   } else {
