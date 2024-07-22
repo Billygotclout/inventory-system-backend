@@ -44,6 +44,15 @@ exports.issue = async ({
   return requester;
 };
 
+exports.getAllIssueOutRequests = async () => {
+  const requestDetails = await Requester.find().populate({
+    path: "items",
+    model: "Inventory",
+  });
+
+  return requestDetails;
+};
+
 exports.viewRequesterInfoData = async (requesterId) => {
   try {
     const requester = await Requester.findById(requesterId).populate({

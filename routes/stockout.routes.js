@@ -4,6 +4,7 @@ const {
   viewRequesterInfo,
   approveStockOut,
   rejectStockOut,
+  getAllRequests,
 } = require("../controllers/stockout.controller");
 
 const validateToken = require("../middleware/validateToken");
@@ -41,8 +42,10 @@ router.post(
   upload.single("file"),
   issueRequester
 );
-router.use(roleChecker("checker"));
+router.get("/requesters", getAllRequests);
 router.get("/view/:id", viewRequesterInfo);
+router.use(roleChecker("checker"));
+
 router.put("/stock-out", approveStockOut);
 router.put("/reject-stock-out", rejectStockOut);
 

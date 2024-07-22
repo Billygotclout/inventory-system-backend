@@ -4,6 +4,19 @@ const CustomError = require("../utils/CustomError");
 const stockoutService = require("../services/stockout.service");
 const fs = require("fs");
 const logger = require("../utils/logger");
+
+const getAllRequests = async (req, res, next) => {
+  try {
+    const getRequests = await stockoutService.getAllIssueOutRequests();
+
+    res.json({
+      message: "requests gotten",
+      data: getRequests,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 const issueRequester = async (req, res, next) => {
   try {
     const { fullName, region, state, address, phone, purpose, items } =
@@ -69,4 +82,5 @@ module.exports = {
   viewRequesterInfo,
   approveStockOut,
   rejectStockOut,
+  getAllRequests,
 };
