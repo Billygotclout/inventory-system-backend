@@ -2,7 +2,7 @@ const Inventory = require("../models/Inventory");
 const Requester = require("../models/Requester");
 const CustomError = require("../utils/CustomError");
 const mongoose = require("mongoose");
-
+const cloudinary = require("../config/cloudinary.config");
 // Assuming you have a model named Requester
 
 exports.issue = async ({
@@ -23,7 +23,16 @@ exports.issue = async ({
       new mongoose.Types.ObjectId(item);
     })
   );
-
+  const result = await cloudinary.uploader.upload(paymentEvidencePath, {
+    resource_type: "raw",
+    public_id: filename,
+    use_filename: true,
+    unique_filename: false,
+    folder: "excel",
+  });
+  fs.unlink(`${filepath}`, (err) => {
+    if (err) console.log(err);
+  });
   const requester = new Requester({
     fullName,
     region,
@@ -32,7 +41,7 @@ exports.issue = async ({
     phone,
     items: resultArray,
     purpose,
-    paymentEvidence: paymentEvidencePath,
+    paymentEvidence: result.secure_url,
     user_id: user_id,
   });
   await requester.save();

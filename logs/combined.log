@@ -88,3 +88,5 @@
 [2024-07-23 01:18:14.640 PM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-02.wjhdnzn.mongodb.net inventory-system[39m
 [2024-07-23 01:19:17.601 PM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
 [2024-07-23 01:19:25.582 PM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-00.wjhdnzn.mongodb.net inventory-system[39m
+[2024-07-23 01:19:54.162 PM] [32minfo[39m: 	[32mServer is listening on http://localhost:3000[39m
+[2024-07-23 01:20:02.466 PM] [32minfo[39m: 	[32mDb connected: ac-gzxbtdy-shard-00-02.wjhdnzn.mongodb.net inventory-system[39m
