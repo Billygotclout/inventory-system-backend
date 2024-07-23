@@ -45,10 +45,15 @@ exports.issue = async ({
 };
 
 exports.getAllIssueOutRequests = async () => {
-  const requestDetails = await Requester.find().populate({
-    path: "items",
-    model: "Inventory",
-  });
+  const requestDetails = await Requester.find()
+    .populate({
+      path: "items",
+      model: "Inventory",
+    })
+    .populate({
+      path: "user_id",
+      model: "User",
+    });
 
   return requestDetails;
 };
